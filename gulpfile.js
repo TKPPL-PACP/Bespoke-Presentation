@@ -21,9 +21,6 @@ var pkg = require('./package.json'),
 
 gulp.task('js', ['clean:js'], function() {
   return gulp.src([
-          'bower_components/jquery/dist/jquery.js',
-          'bower_components/angular/angular.js',
-          'bower_components/angular_bootstrap/ui-bootstrap.js',
           'src/scripts/*.js'
         ])
     .pipe(isDist ? through() : plumber())
@@ -87,7 +84,7 @@ gulp.task('clean:images', function(done) {
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
-    livereload: true
+    livereload: false
   });
 });
 
