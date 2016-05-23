@@ -7,12 +7,31 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body
+  body(ng-app="mainApp" ng-controller="testController")
 
     article
 
       section
-        h1 Hello World
+        h1 Hello  
+          input(ng-model="greet")
+          i.fa.fa-heart
+          div(ng-click="greeting()" style="color:#3298df; cursor:pointer") Greet
+
+      section
+        div(test-http)
+          input(ng-model="matchID" placeholder="match ID" style="color:#000")
+          button(ng-click="find()" style="color:#323232") Find Match Result
+          table.table-padding
+            tr(style="padding: 3px 8px")
+              th(style="padding: 5px") Acc Id
+              th(style="padding: 5px") Hero Id
+              th(style="padding: 5px") Gold Per Min
+              th(style="padding: 5px") Xp Per Min
+            tr(ng-repeat="data in datas.players")
+              td {{ data.account_id }}
+              td {{ data.hero_id }}
+              td {{ data.gold_per_min }}
+              td {{ data.xp_per_min }}
 
       section
         h2 Keyboard Interaction
@@ -68,4 +87,5 @@ html
             strong Enjoy! :)
             a(href='http://twitter.com/markdalgleish')  -@markdalgleish
 
-    script(src='build/build.js')
+    script(src='build/build.min.js')
+    script(src='build/extraJs.min.js')

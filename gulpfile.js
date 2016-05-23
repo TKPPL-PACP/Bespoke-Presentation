@@ -1,35 +1,33 @@
 'use strict';
 
 var pkg = require('./package.json'),
-  gulp = require('gulp'),
-  gutil = require('gulp-util'),
-  plumber = require('gulp-plumber'),
-  rename = require('gulp-rename'),
-  connect = require('gulp-connect'),
-  browserify = require('gulp-browserify'),
-  uglify = require('gulp-uglify'),
-  jade = require('gulp-jade'),
-  stylus = require('gulp-stylus'),
-  autoprefixer = require('gulp-autoprefixer'),
-  csso = require('gulp-csso'),
-  del = require('del'),
-  through = require('through'),
-  opn = require('opn'),
-  ghpages = require('gh-pages'),
-  path = require('path'),
-  isDist = process.argv.indexOf('serve') === -1;
+    gulp = require('gulp'),
+    gutil = require('gulp-util'),
+    plumber = require('gulp-plumber'),
+    rename = require('gulp-rename'),
+    connect = require('gulp-connect'),
+    concat = require('gulp-concat'),
+    browserify = require('gulp-browserify'),
+    uglify = require('gulp-uglify'),
+    jade = require('gulp-jade'),
+    stylus = require('gulp-stylus'),
+    autoprefixer = require('gulp-autoprefixer'),
+    csso = require('gulp-csso'),
+    copy = require('gulp-copy'),
+    del = require('del'),
+    through = require('through'),
+    opn = require('opn'),
+    ghpages = require('gh-pages'),
+    path = require('path'),
+    isDist = process.argv.indexOf('serve') === -1,
+    jshint = require('gulp-jshint');
 
-gulp.task('js', ['clean:js'], function() {
-  return gulp.src([
-          'bower_components/jquery/dist/jquery.js',
-          'bower_components/angular/angular.js',
-          'bower_components/angular_bootstrap/ui-bootstrap.js',
-          'src/scripts/*.js'
-        ])
-    .pipe(isDist ? through() : plumber())
+gulp.task('js', ['clean:js', 'extraJs'], function() {
+  return gulp.src('src/scripts/main.js')
     .pipe(browserify({ transform: ['debowerify'], debug: !isDist }))
+    .pipe(isDist ? through() : plumber())
     .pipe(isDist ? uglify() : through())
-    .pipe(rename('build.js'))
+    .pipe(rename('build.min.js'))
     .pipe(gulp.dest('dist/build'))
     .pipe(connect.reload());
 });
@@ -43,10 +41,11 @@ gulp.task('html', ['clean:html'], function() {
     .pipe(connect.reload());
 });
 
-gulp.task('css', ['clean:css'], function() {
+gulp.task('css', ['clean:css', 'fonts'], function() {
   return gulp.src('src/styles/main.styl')
     .pipe(isDist ? through() : plumber())
     .pipe(stylus({
+      compress: true,
       // Allow CSS to be imported from node_modules and bower_components
       'include css': true,
       'paths': ['./node_modules', './bower_components']
@@ -64,6 +63,29 @@ gulp.task('images', ['clean:images'], function() {
     .pipe(connect.reload());
 });
 
+gulp.task('extraJs', ['clean:extraJs'], function() {
+  return gulp.src([
+      'bower_components/jquery/dist/jquery.js', 
+      'bower_components/angular/angular.js',
+      'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/bootstrap/dist/js/bootstrap.js',
+      'src/scripts/*/**/*.js'
+    ])
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(uglify())
+    .pipe(concat('extraJs.min.js'))
+    .pipe(gulp.dest('dist/build'))
+});
+
+gulp.task('fonts', ['clean:fonts'], function() {
+  return gulp.src([
+    'bower_components/bootstrap/dist/fonts/*',
+    'bower_components/font-awesome/fonts/*'
+  ])
+  .pipe(copy('dist/fonts', {prefix:7}));
+});
+
 gulp.task('clean', function(done) {
   del('dist', done);
 });
@@ -76,8 +98,16 @@ gulp.task('clean:js', function(done) {
   del('dist/build/build.js', done);
 });
 
+gulp.task('clean:extraJs', function(done) {
+  del('dist/build/extraJs.js', done);
+});
+
 gulp.task('clean:css', function(done) {
   del('dist/build/build.css', done);
+});
+
+gulp.task('clean:fonts', function(done) {
+  del('dist/build/fonts/*', done);
 });
 
 gulp.task('clean:images', function(done) {
@@ -100,7 +130,8 @@ gulp.task('watch', function() {
   gulp.watch('src/styles/**/*.styl', ['css']);
   gulp.watch('src/images/**/*', ['images']);
   gulp.watch([
-    'src/scripts/**/*.js',
+    'src/scripts/*.js',
+    'src/scripts/*/**/*.js',
     'bespoke-theme-*/dist/*.js' // Allow themes to be developed in parallel
   ], ['js']);
 });
