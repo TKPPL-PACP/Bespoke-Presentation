@@ -73,7 +73,7 @@ gulp.task('extraJs', ['clean:extraJs'], function() {
     ])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    .pipe(uglify())
+    //.pipe(uglify())
     .pipe(concat('extraJs.min.js'))
     .pipe(gulp.dest('dist/build'))
 });
