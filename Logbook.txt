@@ -1,0 +1,26 @@
+Pertanyaan :
+1. apa yang dikerjakan kemarin?
+2. apa yang dikerjakan hari ini?
+3. Selama proses pengerjaan, kendala apa yang dihadapi?
+
+------------------------------
+23-05-2016 (Thomas Yaputra)
+1. Kemarin kami mengerjakan:
+	- {}
+2. Hari ini kami mengerjakan :
+	- Tambah Dependencies : 
+   		* angular
+   		* angular-bootstrap
+   		* jquery
+   		* bootstrap
+   		* font-awesome
+	- Tambah 4 task untuk Gulp : 
+   		* extraJs
+   		* fonts
+   		* clean:extraJs
+   		* clean:fonts
+   	- Tambah dependency tema build-wars
+	- Initial commit proyek bespoke 
+	- Tambah icon hero minimap dota 2
+	- Sejarah Dota
+	- Penjelasan Dota
