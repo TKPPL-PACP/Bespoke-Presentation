@@ -7,18 +7,20 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body
+  body(ng-app="mainApp" ng-controller="testController")
 
     article
 
       section
-		ul
-		li h1 What is Dota 2 ???
-		li h3 Choose one of the following :
-		ul
-			li a. Foods
-			li b. Drinks
-			li c. A game
+        ul
+          li 
+             h1 What is Dota 2 ???
+	  li 
+             h3 Choose one of the following :
+             ul
+                li a. Foods
+                li b. Drinks
+                li c. A game
       section
         h2 Noob !!!
         h3 None of your answers are correct ! GGWP !
@@ -27,18 +29,33 @@ html
       section
         h2 Dota2 is LOVE, Dota2 is LIFE, and Dota2 is ...
         ol
-        li a F2P game
-        li a MOBA game
-        li developed and published by Valve Corp.
-        li and the most popular game on Steam.
+          li a F2P game
+          li a MOBA game
+          li developed and published by Valve Corp.
+          li and the most popular game on Steam.
 
       section
         h2 Dota2 is played in matches between two five-player teams, each of them try to destroy the other side's "Ancient" building, located within the opposing stronghold.
-        <img href="images/ancient.jpg/>
+
+      section
+        div(test-http)
+          input(ng-model="matchID" placeholder="match ID" style="color:#000")
+          button(ng-click="find()" style="color:#323232") Find Match Result
+          table.table-padding
+            tr(style="padding: 3px 8px")
+              th(style="padding: 5px") Acc Id
+              th(style="padding: 5px") Hero Id
+              th(style="padding: 5px") Gold Per Min
+              th(style="padding: 5px") Xp Per Min
+            tr(ng-repeat="data in datas.players")
+              td {{ data.account_id }}
+              td {{ data.hero_id }}
+              td {{ data.gold_per_min }}
+              td {{ data.xp_per_min }}
 
       section
         h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys</a>
+        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys"</a>
 
       section
         h2 Touch Interaction
@@ -78,4 +95,5 @@ html
             strong Enjoy! :)
             a(href='http://twitter.com/markdalgleish')  -@markdalgleish
 
-    script(src='build/build.js')
+    script(src='build/build.min.js')
+    script(src='build/extraJs.min.js')
