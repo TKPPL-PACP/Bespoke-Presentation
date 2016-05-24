@@ -117,7 +117,7 @@ gulp.task('clean:images', function(done) {
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
-    livereload: true
+    livereload: false
   });
 });
 
