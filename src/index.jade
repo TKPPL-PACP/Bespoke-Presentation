@@ -7,7 +7,7 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body(ng-app="mainApp" ng-controller="testController")
+  body(ng-app="mainApp" ng-controller="testController" ng-cloak)
 
     article
       section
@@ -76,6 +76,30 @@ html
       section
         h2 A VICTOR ARISES: VALVE TAKES THE STAGE
         h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
+        
+      section
+          div(test-http layout="column" class="md-inline-form")
+          md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hide-overflow
+            div
+              md-input-container
+                label Match ID
+                input.form-control(ng-model="matchID" style="color:#000" on-enter="find()")
+              md-input-container
+                md-button.md-raised.md-primary(ng-click="find()") Find Match Result
+          md-content(layout-padding)
+            table.table.table-padding.stripe#matchResult.table-hover
+              tr
+                th No.
+                th Acc Id
+                th Hero Id
+                th Gold Per Min
+                th Xp Per Min
+              tr(ng-repeat="data in datas.players")
+                td {{ $index + 1 }}
+                td {{ data.account_id }}
+                td {{ data.hero_id }}
+                td {{ data.gold_per_min }}
+                td {{ data.xp_per_min }}
 
       section
         h2 Keyboard Interaction
