@@ -12,9 +12,9 @@
 
   function testHttp($http) {
     var headers = {
-      'Access-Control-Allow-Origin': 'localhost:8080/',
-      'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': '*',
+      'Access-Control-Allow-Headers': '*',
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };

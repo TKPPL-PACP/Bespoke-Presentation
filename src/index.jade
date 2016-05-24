@@ -7,7 +7,7 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body(ng-app="mainApp" ng-controller="testController" ng-cloak)
+  body(ng-app="mainApp" ng-controller="mainController")
 
     article
       section
@@ -39,22 +39,6 @@ html
 
       section
         h2 Dota2 is played in matches between two five-player teams, each of them try to destroy the other side's "Ancient" building, located within the opposing stronghold.
-
-      section
-        div(test-http)
-          input(ng-model="matchID" placeholder="match ID" style="color:#000")
-          button(ng-click="find()" style="color:#323232") Find Match Result
-          table.table-padding
-            tr(style="padding: 3px 8px")
-              th(style="padding: 5px") Acc Id
-              th(style="padding: 5px") Hero Id
-              th(style="padding: 5px") Gold Per Min
-              th(style="padding: 5px") Xp Per Min
-            tr(ng-repeat="data in datas.players")
-              td {{ data.account_id }}
-              td {{ data.hero_id }}
-              td {{ data.gold_per_min }}
-              td {{ data.xp_per_min }}
               
       section
         h1 The History of DotA 2
@@ -76,7 +60,15 @@ html
       section
         h2 A VICTOR ARISES: VALVE TAKES THE STAGE
         h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
-        
+      
+      section
+        Currently DotA 2 has {{ heroes.length }} heroes.
+        table.table-padding
+          tr(style='padding :3x 8px')
+            th(style='padding: 8px') Hero Name
+          tr(ng-repeat='hero in heroes')
+            td(ng-if='hero.id < 10') {{ hero.localized_name }}
+            td(ng-if='hero.id < 10') <img src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}' style='height:20px;width:35,55px' />
       section
           div(test-http layout="column" class="md-inline-form")
           md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hide-overflow
@@ -100,6 +92,21 @@ html
                 td {{ data.hero_id }}
                 td {{ data.gold_per_min }}
                 td {{ data.xp_per_min }}
+
+      section
+        div(match-history)
+          input(ng-model="accountId" placeholder="Account ID" style="color:#000")
+          button(ng-click="findHistory()" style="color:#323232") Find Match History
+          table.table-padding
+            tr(style="padding: 3px 8px")
+              th(style="padding: 8px") Match Id
+              th(style="padding: 8px") Hero Id
+              th(style="padding: 5px") Gold Per Min
+              th(style="padding: 5px") Xp Per Min
+            tr(ng-repeat="match in datas.matches")
+              td {{ match.match_id }}
+              td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id <= 31") {{ heroes[player.hero_id - 1].localized_name }}
+              td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id > 31") {{ heroes[player.hero_id - 2].localized_name }}
 
       section
         h2 Keyboard Interaction
