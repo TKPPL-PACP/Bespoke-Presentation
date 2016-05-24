@@ -26,7 +26,7 @@ gulp.task('js', ['clean:js', 'extraJs'], function() {
   return gulp.src('src/scripts/main.js')
     .pipe(browserify({ transform: ['debowerify'], debug: !isDist }))
     .pipe(isDist ? through() : plumber())
-    .pipe(isDist ? uglify() : through())
+   // .pipe(isDist ? uglify() : through())
     .pipe(rename('build.min.js'))
     .pipe(gulp.dest('dist/build'))
     .pipe(connect.reload());
@@ -48,7 +48,7 @@ gulp.task('css', ['clean:css', 'fonts'], function() {
       compress: true,
       // Allow CSS to be imported from node_modules and bower_components
       'include css': true,
-      'paths': ['./node_modules', './bower_components']
+      'paths': ['./node_modules', './bower_components', './src/styles']
     }))
     .pipe(autoprefixer('last 2 versions', { map: false }))
     .pipe(isDist ? csso() : through())
@@ -67,13 +67,18 @@ gulp.task('extraJs', ['clean:extraJs'], function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js', 
       'bower_components/angular/angular.js',
+      'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-animate/angular-animate.js',
+      'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+      'bower_components/angular-messages/angular-messages.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'src/scripts/*/**/*.js'
     ])
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    //.pipe(uglify())
+   // .pipe(uglify())
     .pipe(concat('extraJs.min.js'))
     .pipe(gulp.dest('dist/build'))
 });
@@ -83,7 +88,7 @@ gulp.task('fonts', ['clean:fonts'], function() {
     'bower_components/bootstrap/dist/fonts/*',
     'bower_components/font-awesome/fonts/*'
   ])
-  .pipe(copy('dist/fonts', {prefix:7}));
+  .pipe(gulp.dest('dist/fonts'));
 });
 
 gulp.task('clean', function(done) {
@@ -117,7 +122,7 @@ gulp.task('clean:images', function(done) {
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
-    livereload: true
+    livereload: false
   });
 });
 

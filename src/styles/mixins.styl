@@ -1,0 +1,12 @@
+border-radius(n)
+  -webkit-border-radius n
+  -moz-border-radius n
+  border-radius n
+
+stripe(even = #646464, odd = #999)
+  tr
+    background-color odd
+    &.even
+    &:nth-child(even)
+      background-color even
+
