@@ -59,6 +59,14 @@ html
       section
         h1 Sejarah Lahirnya DotA
         h3 Defense of The Ancients pertama, awalnya dibuat oleh gamer yang kecanduan sama Warcraft III : Frozen Throne, nama pembuatnya yaitu "eul"(nickname). "Eul" hanya membuat beberapa map. Pahadal, dunia pada saat itu sangatlah antusias dengan game DotA ini. Kemudian, ada lagi gamer yg nickname-nya "guinsoo". "Guinsoo" juga nerusin project DOTA ini. Itu sebabnya di DOTA sampai sekarang memiliki item "Eul Scepter of Divinity" dan "Guinsoo Schyte of Vyse". Itu untuk menghargai usaha dari 2 gamer tersebut. Kemudian, muncul gamer yang  "IceFrog" , ini yg bisa dibilang "bapak-nya DOTA" . ditangan orang ini DOTA jadi ajib , improvisasi hero" & item , map" baru , dsb . ditangan dia ini juga-lah ampe sekarang jadi ada gagasan di DOTA itu kebagi 2 tim antara Scourge (kegelapan) & Sentinel (alam) . tapi kalo di DOTA 2 , jadi Dire ama Radiant ..
+
+      section
+        table.table-padding
+          tr(style='padding :3x 8px')
+            th(style='padding: 8px') Hero Name
+          tr(ng-repeat='hero in heroes')
+            td(ng-if='hero.id < 10') {{ hero.localized_name }}
+            td(ng-if='hero.id < 10') <img src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}' style='height:20px;width:35,55px' />
         
       section
         div(match-history)
@@ -74,6 +82,7 @@ html
               td {{ match.match_id }}
               td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id <= 31") {{ heroes[player.hero_id - 1].localized_name }}
               td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id > 31") {{ heroes[player.hero_id - 2].localized_name }}
+
       section
         h2 Keyboard Interaction
         h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys"</a>
