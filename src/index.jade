@@ -7,7 +7,7 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body(ng-app="mainApp" ng-controller="testController")
+  body(ng-app="mainApp" ng-controller="testController" ng-cloak)
 
     article
 
@@ -18,20 +18,28 @@ html
           div(ng-click="greeting()" style="color:#3298df; cursor:pointer") Greet
 
       section
-        div(test-http)
-          input(ng-model="matchID" placeholder="match ID" style="color:#000")
-          button(ng-click="find()" style="color:#323232") Find Match Result
-          table.table-padding
-            tr(style="padding: 3px 8px")
-              th(style="padding: 5px") Acc Id
-              th(style="padding: 5px") Hero Id
-              th(style="padding: 5px") Gold Per Min
-              th(style="padding: 5px") Xp Per Min
-            tr(ng-repeat="data in datas.players")
-              td {{ data.account_id }}
-              td {{ data.hero_id }}
-              td {{ data.gold_per_min }}
-              td {{ data.xp_per_min }}
+        div(test-http layout="column" class="md-inline-form")
+          md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hide-overflow
+            div
+              md-input-container
+                label Match ID
+                input.form-control(ng-model="matchID" style="color:#000" on-enter="find()")
+              md-input-container
+                md-button.md-raised.md-primary(ng-click="find()") Find Match Result
+          md-content(layout-padding)
+            table.table.table-padding.stripe#matchResult.table-hover
+              tr
+                th No.
+                th Acc Id
+                th Hero Id
+                th Gold Per Min
+                th Xp Per Min
+              tr(ng-repeat="data in datas.players")
+                td {{ $index + 1 }}
+                td {{ data.account_id }}
+                td {{ data.hero_id }}
+                td {{ data.gold_per_min }}
+                td {{ data.xp_per_min }}
 
       section
         h2 Keyboard Interaction
