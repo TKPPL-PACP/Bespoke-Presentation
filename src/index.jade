@@ -7,7 +7,7 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body(ng-app="mainApp" ng-controller="testController")
+  body(ng-app="mainApp" ng-controller="mainController")
 
     article
 
@@ -33,6 +33,20 @@ html
               td {{ data.gold_per_min }}
               td {{ data.xp_per_min }}
 
+      section
+        div(match-history)
+          input(ng-model="accountId" placeholder="Account ID" style="color:#000")
+          button(ng-click="findHistory()" style="color:#323232") Find Match History
+          table.table-padding
+            tr(style="padding: 3px 8px")
+              th(style="padding: 8px") Match Id
+              th(style="padding: 8px") Hero Id
+              th(style="padding: 5px") Gold Per Min
+              th(style="padding: 5px") Xp Per Min
+            tr(ng-repeat="match in datas.matches")
+              td {{ match.match_id }}
+              td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id <= 31") {{ heroes[player.hero_id - 1].localized_name }}
+              td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id > 31") {{ heroes[player.hero_id - 2].localized_name }}
       section
         h2 Keyboard Interaction
         h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys"</a>
