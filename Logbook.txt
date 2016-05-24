@@ -24,3 +24,6 @@ Pertanyaan :
 	- Tambah icon hero minimap dota 2
 	- Sejarah Dota
 	- Penjelasan Dota
+3. Kendala yang dihadapi :
+   - Pada beberapa user, ketika sudah melakukan push. History tidak muncul pada situs www.github.com.
+   - Pada beberapa user, sering kali terjadi conflict pada data yang baru dipush ke repository yang sama.
