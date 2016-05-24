@@ -7,170 +7,17 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body(ng-app="mainApp" ng-controller="mainController")
+  body(ng-app="mainApp" ng-cloak)
 
     article
-      section
-        h1 DotA 2
-        h2 PACP Teams
+      include templates/history.jade
 
-      section
-        ul
-          li 
-             h1 What is Dota 2 ???
-          li 
-             h3 Choose one of the following :
-             ul
-                li a. Foods
-                li b. Drinks
-                li c. A game
-      section
-        h2 Noob !!!
-        h3 None of your answers are correct ! GGWP !
-        h2 So, the correct answer is ...
-
-      section
-        h2 Dota2 is LOVE, Dota2 is LIFE, and Dota2 is ...
-        ol
-          li a F2P game
-          li a MOBA game
-          li developed and published by Valve Corp.
-          li and the most popular game on Steam.
-
-      section
-        h2 Dota2 is played in matches between two five-player teams, each of them try to destroy the other side's "Ancient" building, located within the opposing stronghold.
-              
-      section
-        h1 The History of DotA 2
-        h2 THE EARLY DAYS: STARCRAFT
-        h3 In 1998, Blizzard Entertainment released what would come to be the top selling PC game of all time, Starcraft. Included with this game were a host of map editing and creation tools called StarEdit.
-
-      section
-        h2 THE ANCIENTS ARISE: WARCRAFT III
-        h3 In 2003, the game changed. Literally. Blizzard released Warcraft III, along with its editing tools, and modders went crazy. A modder by the name of Eul began work to the new engine. This map was called Defense of the Ancients, or DotA.
-
-      section
-        h2 THE ANCIENTS ARISE: WARCRAFT III
-        h3 At some point in 2004-2005, a modder named Guinsoo came to the scene and created his own version of DotA, very closely using the map from Eul's, but taking the most interesting heroes from various other versions. He called this "DotA: Allstars," and marks the start of what we think of today as DotA.
-
-      section
-        h2 THE CREATOR DIVINE: ICEFROG
-        h3 Guinsoo maintained the DotA: Allstars map for over two years, before handing it off to a modder you may have heard of: Icefrog! It's hard to describe what DotA was like during this transitional period. Icefrog is some sort of DotA savant.
-
-      section
-        h2 A VICTOR ARISES: VALVE TAKES THE STAGE
-        h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
-      
-      section
-        Currently DotA 2 has {{ heroes.length }} heroes.
-        table.table-padding
-          tr(style='padding :3x 8px')
-            th(style='padding: 8px') Hero Name
-          tr(ng-repeat='hero in heroes')
-            td(ng-if='hero.id < 10') {{ hero.localized_name }}
-            td(ng-if='hero.id < 10') <img src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}' style='height:20px;width:35,55px' />
-      section
-          div(test-http layout="column" class="md-inline-form")
-          md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hide-overflow
-            div
-              md-input-container
-                label Match ID
-                input.form-control(ng-model="matchID" style="color:#000" on-enter="find()")
-              md-input-container
-                md-button.md-raised.md-primary(ng-click="find()") Find Match Result
-          md-content(layout-padding)
-            table.table.table-padding.stripe#matchResult.table-hover
-              tr
-                th No.
-                th Acc Id
-                th Hero Id
-                th Gold Per Min
-                th Xp Per Min
-              tr(ng-repeat="data in datas.players")
-                td {{ $index + 1 }}
-                td {{ data.account_id }}
-                td {{ data.hero_id }}
-                td {{ data.gold_per_min }}
-                td {{ data.xp_per_min }}
-
-      section
-        div(match-history)
-          input(ng-model="accountId" placeholder="Account ID" style="color:#000")
-          button(ng-click="findHistory()" style="color:#323232") Find Match History
-          table.table-padding
-            tr(style="padding: 3px 8px")
-              th(style="padding: 8px") Match Id
-              th(style="padding: 8px") Hero Id
-              th(style="padding: 5px") Gold Per Min
-              th(style="padding: 5px") Xp Per Min
-            tr(ng-repeat="match in datas.matches")
-              td {{ match.match_id }}
-              td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id <= 31") {{ heroes[player.hero_id - 1].localized_name }}
-              td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id > 31") {{ heroes[player.hero_id - 2].localized_name }}
-
-
-      section
-        h1 The History of DotA 2
-        h2 THE EARLY DAYS: STARCRAFT
-        h3 In 1998, Blizzard Entertainment released what would come to be the top selling PC game of all time, Starcraft. Included with this game were a host of map editing and creation tools called StarEdit.
-
-      section
-        h2 THE ANCIENTS ARISE: WARCRAFT III
-        h3 In 2003, the game changed. Literally. Blizzard released Warcraft III, along with its editing tools, and modders went crazy. A modder by the name of Eul began work to the new engine. This map was called Defense of the Ancients, or DotA.
-
-      section
-        h2 THE ANCIENTS ARISE: WARCRAFT III
-        h3 At some point in 2004-2005, a modder named Guinsoo came to the scene and created his own version of DotA, very closely using the map from Eul's, but taking the most interesting heroes from various other versions. He called this "DotA: Allstars," and marks the start of what we think of today as DotA.
-
-      section
-        h2 THE CREATOR DIVINE: ICEFROG
-        h3 Guinsoo maintained the DotA: Allstars map for over two years, before handing it off to a modder you may have heard of: Icefrog! It's hard to describe what DotA was like during this transitional period. Icefrog is some sort of DotA savant.
-
-      section
-        h2 A VICTOR ARISES: VALVE TAKES THE STAGE
-        h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
-
-      section
-        h2 Keyboard Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-keys">bespoke-keys"</a>
-
-      section
-        h2 Touch Interaction
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-touch">bespoke-touch</a>
-
-      section
-        h2 Responsive Slides
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-scale">bespoke-scale</a>
-
-      section
-        h2 Bullet List
-        h3.bullet Powered by <a href="https://github.com/markdalgleish/bespoke-bullets">bespoke-bullets</a>
-        ul
-          li Bullet 1
-          li Bullet 2
-          li Bullet 3
+      include templates/match-statistic.jade
 
       section(data-bespoke-hash='named-route')
         h2 Named Route
         h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
         p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
-
-      section.emphatic-text(data-bespoke-backdrop='emphatic')
-        h2 Emphatic Slide!
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a>
-
-      section
-        h2.bullet Just the beginning...
-        br
-        ul
-          li Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em>
-          li Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em>
-          li Edit JavaScript in <em>'src/scripts/main.js'</em>
-        br
-        ul
-          li
-            strong Enjoy! :)
-            a(href='http://twitter.com/markdalgleish')  -@markdalgleish
 
     script(src='build/build.min.js')
     script(src='build/extraJs.min.js')
