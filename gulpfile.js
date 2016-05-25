@@ -76,8 +76,8 @@ gulp.task('extraJs', ['clean:extraJs'], function() {
       'bower_components/bootstrap/dist/js/bootstrap.js',
       'src/scripts/*/**/*.js'
     ])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
+   // .pipe(jshint())
+   // .pipe(jshint.reporter('default'))
    // .pipe(uglify())
     .pipe(concat('extraJs.min.js'))
     .pipe(gulp.dest('dist/build'))

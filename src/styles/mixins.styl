@@ -3,10 +3,13 @@ border-radius(n)
   -moz-border-radius n
   border-radius n
 
-stripe(even = #646464, odd = #999)
+stripe(even = #eee, odd = #ccc)
   tr
     background-color odd
     &.even
     &:nth-child(even)
       background-color even
+    &:hover
+      background-color #424242
+      color #fff
 

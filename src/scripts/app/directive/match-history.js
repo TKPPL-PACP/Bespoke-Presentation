@@ -50,6 +50,7 @@
           var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
           urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
           urlMatchHistory += "&matches_requested=10";
+          console.log(urlMatchHistory);
 
           if($scope.accountId != '') {
             urlMatchHistory += '&account_id=' + $scope.accountId;
