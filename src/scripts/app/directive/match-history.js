@@ -24,7 +24,6 @@
         $scope.accountId = '173271017';
         
         function idTo64Bit(id) {
-          console.log(id);
           var to64 = '76561197960265728';
           var hasil = '';
           var tmp = 0;
@@ -32,7 +31,7 @@
           var now = id.length - 1;
           for(var i = to64.length-1;i>=0;i--) {
               tmp = to64.charCodeAt(i) - 48;
-              if(now) {
+              if(now >= 0) {
                 tmp += id.charCodeAt(now) - 48;
                 now--;
               }
@@ -41,11 +40,11 @@
               if(tmp >= 10) carry = 1, tmp -= 10;
               hasil = tmp + hasil;
           }
+          return hasil;
         }
-
+        $scope.idTo64Bit = idTo64Bit;
         function findHistory() {
-          var steamId = idTo64Bit($scope.accoundId);
-
+          var steamId = idTo64Bit($scope.accountId);
           console.log(steamId);
           var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
           urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
@@ -58,6 +57,7 @@
 
           $http.get(urlMatchHistory).then(function (response) {
             $scope.datas = response.data.result;
+            console.log($scope.datas);
           }, function() {
             alert('error');
           });
