@@ -14,10 +14,29 @@ html
 
       include templates/match-statistic.jade
 
-      section(data-bespoke-hash='named-route')
-        h2 Named Route
-        h3 Powered by <a href="https://github.com/markdalgleish/bespoke-hash">bespoke-hash</a>
-        p Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.
+      section(data-bespoke-hash='Spinner')
+        h2 Look Spinners
+        div(style="background:#777; padding:5px")
+          div
+            div(style="margin-left: 40%")
+              rotating-plane-spinner
+            label rotating-plane-spinner
+          div
+            div(style="margin-left: 40%")
+              double-bounce-spinner
+            label double-bounce-spinner
+          div
+            div(style="margin-left: 40%")
+              wave-spinner
+            label wave-spinner
+          div
+            div(style="margin-left: 40%")
+              pulse-spinner
+            label pulse-spinner
+          div
+            div(style="margin-left: 40%")
+              chasing-dots-spinner 
+            label chasing-dots-spinner
 
     script(src='build/build.min.js')
     script(src='build/extraJs.min.js')
