@@ -3,7 +3,9 @@
   'use strict';
 
   angular
-    .module('scripts.app.directive.match-detail', [])
+    .module('scripts.app.directive.match-detail', [
+      'scripts.app.directive.match-history'
+    ])
     .directive('matchDetail', matchDetail);
 
   matchDetail.$inject = [
@@ -26,6 +28,10 @@
           var url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=C3CB04CAA921917E39D9F8329E4A8130&match_id="+$scope.matchID;
           $http.get(url).then(function (response) {
             $scope.datas = response.data.result;
+            for(var i=0;i<$scope.datas.players.length;i++) {
+              var accId = $scope.datas.players[i].account_id;
+              console.log(idTo64Bit(accId));
+            }
           }, function() {
             alert("Error things");
           });

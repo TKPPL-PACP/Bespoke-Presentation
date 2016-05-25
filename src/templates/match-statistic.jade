@@ -1,6 +1,6 @@
 section
   div(match-detail layout="column" class="md-inline-form")
-    md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hide-overflow
+    md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hidden-overflow
       div
         md-input-container
           label Match ID
@@ -24,18 +24,25 @@ section
 
 section
   div(match-history)
-    md-content(layout-padding).hide-overflow
+    md-content(layout-padding).hidden-overflow
       div
         md-input-container
           label Account Id
           input(ng-model="accountId" style="color:#000" on-enter="find()")
         md-input-container
           md-button.md-raised.md-primary(ng-click="findHistory()") Find Match History
+        md-input-container
+          label Nickname
+          input(ng-model="user.personaname" disabled)
+        md-input-container
+          label Name
+          input(ng-model="user.realname" disabled)
+    
     md-content(layout-padding ng-show="datas")
       table
         tr(style="padding: 3px 8px")
           th(style="padding: 8px") Match Id
-          th(style="padding: 8px") Hero Id
+          th(style="padding: 8px") Hero 
           th(style="padding: 5px") Gold Per Min
           th(style="padding: 5px") Xp Per Min
         tr(ng-repeat="match in datas.matches")
