@@ -3,14 +3,14 @@
   'use strict';
 
   angular
-    .module('scripts.app.directive.test-http', [])
-    .directive('testHttp', testHttp);
+    .module('scripts.app.directive.match-detail', [])
+    .directive('matchDetail', matchDetail);
 
-  testHttp.$inject = [
+  matchDetail.$inject = [
     '$http',
   ];
 
-  function testHttp($http) {
+  function matchDetail($http) {
     var headers = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': '*',
@@ -24,12 +24,8 @@
         $scope.matchID = 2382708300;
         function find() {
           var url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=C3CB04CAA921917E39D9F8329E4A8130&match_id="+$scope.matchID;
-          console.log(url);
           $http.get(url).then(function (response) {
-            console.log(response.data);
             $scope.datas = response.data.result;
-            console.log($scope.datas);
-            console.log($scope.datas.players);
           }, function() {
             alert("Error things");
           });

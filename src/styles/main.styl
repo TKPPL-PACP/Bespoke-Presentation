@@ -1,6 +1,4 @@
-// New to Stylus? Check out http://learnboost.github.io/stylus
-// Use modern CSS thanks to Autoprefixer: https://github.com/ai/autoprefixer
-
+// Import CSS Files
 @icon-font-path: '../fonts/'
 @fa-font-path: '../fonts/'
 
@@ -9,10 +7,11 @@
 @import 'font-awesome/css/font-awesome.css'
 @import 'angular-material/angular-material.css'
 
-@import 'custom.styl'
 @import 'mixins.styl'
+@import 'spinner-animate.styl'
+@import 'custom.styl'
 
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
-}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+  display none !important;
+
