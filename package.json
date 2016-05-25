@@ -39,8 +39,5 @@
   },
   "engines": {
     "node": ">=0.10.0"
-  },
-  "dependencies": {
-    "bespoke-theme-build-wars": "^1.0.1"
   }
 }
