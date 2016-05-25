@@ -1,0 +1,18 @@
+Sven
+
+Bio : Sven is the bastard son of a Vigil Knight, born of a Pallid Meranth, raised in the Shadeshore Ruins. With his father executed for violating the Vigil Codex, and his mother shunned by her wild race, Sven believes that honor is to be found in no social order, but only in himself. After tending his mother through a lingering death, he offered himself as a novice to the Vigil Knights, never revealing his identity. For thirteen years he studied in his father's school, mastering the rigid code that declared his existence an abomination. Then, on the day that should have been his In-Swearing, he seized the Outcast Blade, shattered the Sacred Helm, and burned the Codex in the Vigil's Holy Flame. He strode from Vigil Keep, forever solitary, following his private code to the last strict rune. Still a knight, yes...but a Rogue Knight. He answers only to himself. 
+
+Skills :
+- Storm Hammer
+Sven unleashes his magical gauntlet that deals damage and stuns enemy units.
+
+- Great Cleave
+Sven strikes with great force, cleaving all nearby enemy units with his attack.
+
+- Warcry
+Sven's Warcry heartens his allies for battle, increasing their movement speed and armor. Lasts 8 seconds.
+
+- God's Strength
+Sven channels his rogue strength, granting bonus damage for 25 seconds. Upgradable by Aghanim's Scepter.
+
+

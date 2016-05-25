@@ -24,21 +24,28 @@ section
 
 section
   div(match-history)
-    md-content(layout-padding).hide-overflow
+    md-content(layout-gt-sm="row" layout-padding).hidden-overflow
       div
         md-input-container
           label Account Id
-          input(ng-model="accountId" style="color:#000" on-enter="find()")
+          input(ng-model="accountId" style="color:#000" on-enter="vm.findHistory()").hide-overflow
         md-input-container
-          md-button.md-raised.md-primary(ng-click="findHistory()") Find Match History
-    md-content(layout-padding ng-show="datas")
+          md-button.md-raised.md-primary(ng-click="vm.findHistory()") Find Match History
+        md-input-container
+          label Nickname
+          input(ng-model="vm.user.personaname" disabled)
+        md-input-container
+          label Name
+          input(ng-model="vm.user.realname" disabled)
+    
+    md-content(layout-padding ng-show="vm.datas")
       table
         tr(style="padding: 3px 8px")
           th(style="padding: 8px") Match Id
-          th(style="padding: 8px") Hero Id
+          th(style="padding: 8px") Hero 
           th(style="padding: 5px") Gold Per Min
           th(style="padding: 5px") Xp Per Min
-        tr(ng-repeat="match in datas.matches")
+        tr(ng-repeat="match in vm.datas.matches")
           td {{ match.match_id }}
           td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id <= 31") {{ heroes[player.hero_id - 1].localized_name }}
           td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id > 31") {{ heroes[player.hero_id - 2].localized_name }}

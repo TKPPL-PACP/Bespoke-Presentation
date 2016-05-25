@@ -27,6 +27,7 @@ Pertanyaan :
 3. Kendala yang dihadapi :
    - Pada beberapa user, ketika sudah melakukan push. History tidak muncul pada situs www.github.com.
    - Pada beberapa user, sering kali terjadi conflict pada data yang baru dipush ke repository yang sama.
+
 -------------------------
 24-05-2016 (Thomas Yaputra)
 1. Kemarin kami mengerjakan :
@@ -61,22 +62,42 @@ Pertanyaan :
 3. Kendala yang dihadapi :
    - Image tidak bisa ditampilkan pada bagian Pengenalan Dota 
    - Masih belum begitu memahami tata bahasa dari jade
+
 -------------------------
 25-05-2016 (Edwin Harly)
 1. Kemarin kami mengerjakan :
-   -
+   - Melengkapi Sejarah DotA 
+   - Fix bug uglify
+   - Tambah gitignore
+   - Rename image icon dan tambah image hero
+   - Tambah fitur 10 match history per account id
+   - Perbaiki Indentation di index.jade
+   - Tambah page hero list
+   - Pindah directory image
+   - Merge dari branch angular_api
+   - Merge dari branch develop
+   - Merge dari branch matchHistory
 2. Hari ini kami mengerjakan :
-   -
+   - Tambah api steam profile pada match history
+   - Add spinner
+   - Add music
+   - Tambah controller hero untuk match detail dan match history
+   - Tambah ambil steam id dari id dota
+   - Tambah Bio, Description skills & image skills untuk hero Axe, Bane, CM, Dazzle, ES, PA, Sven, Zeus
+   - Image ancient sudah di fix dan sudah bisa ditampilkan
+   - Fix code & structure
 3. Kendala yang dihadapi :
-   -
+   - API sering bermasalah
+   - Music sudah berhasil di uji coba di Windows tetapi masih belum berhasil di Ubuntu
+
 -------------------------
 26-05-2016 (Edwin Harly)
 1. Kemarin kami mengerjakan :
-   -
+   - 
 2. Hari ini kami mengerjakan :
-   -
+   - 
 3. Kendala yang dihadapi :
-   -
+   - 
 -------------------------
 27-05-2016 ()
 1. Kemarin kami mengerjakan :

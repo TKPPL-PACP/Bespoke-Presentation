@@ -25,6 +25,12 @@ bespoke.from('article', [
   forms()
 ]);
 
+// myAudio = new Audio('1.mp3');
+// myAudio.addEventListener('ended', function() {
+//     this.currentTime = 0;
+//     this.play();
+// }, false);
+// myAudio.play();
 // Prism syntax highlighting
 // This is actually loaded from "bower_components" thanks to
 // debowerify: https://github.com/eugeneware/debowerify
