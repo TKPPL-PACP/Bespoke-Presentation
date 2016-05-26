@@ -9,7 +9,7 @@
       'ngMaterial',
 
     // Custom JS
-      'scripts.app.controller.heroes-controller',
+      'scripts.app.controller.main-controller',
 
     // Directives
       'scripts.app.directive.match-detail',
