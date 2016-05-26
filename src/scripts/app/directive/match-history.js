@@ -37,7 +37,7 @@
     
     function findHistory() {
       var steamId = ConvertBit.convertTo64Bit($scope.accountId);
-
+      
       var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
       urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
       urlSteamProfile += "&steamids=" + steamId;
