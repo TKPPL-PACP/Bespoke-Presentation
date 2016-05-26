@@ -11,14 +11,16 @@ section
       table.stripe#matchResult.table-padding
         tr
           th No.
-          th Acc Id
+          th Name
           th Hero Id
           th Gold Per Min
           th Xp Per Min
         tr(ng-repeat="data in datas.players")
           td {{ $index + 1 }}
-          td {{ data.account_id }}
-          td {{ data.hero_id }}
+          td(ng-if="data.account_id == 4294967295") Anonymous
+          td(ng-if="data.account_id != 4294967295" ng-repeat="profile in profiles | filter: convertTo64Bit(data.account_id)") {{ profile.personaname }}
+          td(ng-if="data.hero_id <= 31") {{ heroes[data.hero_id - 1].localized_name }}
+          td(ng-if="data.hero_id > 31") {{ heroes[data.hero_id - 2].localized_name }}
           td {{ data.gold_per_min }}
           td {{ data.xp_per_min }}
 

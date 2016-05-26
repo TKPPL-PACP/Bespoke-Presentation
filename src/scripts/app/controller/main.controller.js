@@ -14,19 +14,24 @@
 	];
 
 	function MainController($scope, $filter, $http, ConvertBit) {
+    //init function in scope
+    $scope.convertTo64Bit = ConvertBit.convertTo64Bit;
+    
+    //init get heroes list
     var urlGetHeroes = "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us";
     $http.get(urlGetHeroes).then(function(response) {
       $scope.heroes = response.data.result.heroes;
     });
 
+    //init pcap steam profiles
     var steamids = ConvertBit.convertTo64Bit('173271017');
 
     var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
     urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
-    urlSteamProfile += "&steamids=" + steamids;
+    urlSteamProfile += "&steamids=";
 
     setTimeout(function() {
-        $http.get(urlSteamProfile).then(function (response) {
+        $http.get(urlSteamProfile + steamids).then(function (response) {
             $scope.userPCAP = response.data.response.players;
             console.log($scope.userPCAP);
         }, function() {
@@ -39,12 +44,12 @@
   function ConvertBit() {
 
     function convertTo64Bit(id) {
+      id = id.toString();
       var to64 = '76561197960265728',
           hasil = '',
           tmp = 0,
           carry = 0,
           now = id.length - 1;
-
       for(var i = to64.length-1;i>=0;i--) {
         tmp = to64.charCodeAt(i) - 48;
         if(now >= 0) {
@@ -60,6 +65,7 @@
     }
 
     function convertTo32Bit(id) {
+      id = id.toString();
       var to32 = '76561197960265728',
           hasil = '',
           hasilTanpaZero = '',

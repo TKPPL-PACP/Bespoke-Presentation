@@ -40,7 +40,7 @@
       
       var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
       urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
-      urlSteamProfile += "&steamids=" + steamId;
+      urlSteamProfile += "&steamids=";
 
       var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
       urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
@@ -55,7 +55,7 @@
       }, function() {
           alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
       });
-      $http.get(urlSteamProfile).then(function (response) {
+      $http.get(urlSteamProfile + steamId).then(function (response) {
         vm.user = response.data.response.players[0];
       }, function() {
           alert('That account has been blocked maybe ...');
