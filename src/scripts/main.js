@@ -24,7 +24,8 @@ bespoke.from('article', [
   progress(),
   forms()
 ]);
-
+// var audio = new Audio('1.mp3');
+// audio.play();
 // myAudio = new Audio('1.mp3');
 // myAudio.addEventListener('ended', function() {
 //     this.currentTime = 0;
