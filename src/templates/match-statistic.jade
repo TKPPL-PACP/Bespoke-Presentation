@@ -43,8 +43,6 @@ section
         tr(style="padding: 3px 8px")
           th(style="padding: 8px") Match Id
           th(style="padding: 8px") Hero 
-          th(style="padding: 5px") Gold Per Min
-          th(style="padding: 5px") Xp Per Min
         tr(ng-repeat="match in datas.matches")
           td {{ match.match_id }}
           td(style="padding: 0 8px" ng-repeat="player in match.players | filter:accountId" ng-if="player.hero_id <= 31") {{ heroes[player.hero_id - 1].localized_name }}
