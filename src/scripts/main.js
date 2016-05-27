@@ -24,7 +24,12 @@ bespoke.from('article', [
   progress(),
   forms()
 ]);
+var x = document.getElementById('myAudio');
+    x.loop = true;
+    x.load();
 
+// var audio = new Audio('1.mp3');
+// audio.play();
 // myAudio = new Audio('1.mp3');
 // myAudio.addEventListener('ended', function() {
 //     this.currentTime = 0;
