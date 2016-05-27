@@ -93,11 +93,31 @@ Pertanyaan :
 -------------------------
 26-05-2016 (Edwin Harly)
 1. Kemarin kami mengerjakan :
-   - 
+   - Tambah api steam profile pada match history
+   - Add spinner
+   - Add music
+   - Tambah controller hero untuk match detail dan match history
+   - Tambah ambil steam id dari id dota
+   - Tambah Bio, Description skills & image skills untuk hero Axe, Bane, CM, Dazzle, ES, PA, Sven, Zeus
+   - Image ancient sudah di fix dan sudah bisa ditampilkan
+   - Fix code & structure
 2. Hari ini kami mengerjakan :
-   - 
+   - Tambah bbrp gambar minimap dota 2
+   - Setting git ignore dan penambahan lagu, lagu selesai
+   - Edit git ignore
+   - Perbaikan lagu
+   - Testing error
+   - Setting git ignore dan penambahan lagu
+   - Fix lagu dan repeat
+   - Perbaikan pada match-static.jade
+   - Tambah ambil nickname dan hero untuk api match detail
+   - Tambah fitur convertTo32Bit
+   - Tambah gambar background 1366*768
+   - Hapus kolom yang tidak diperlukan
+   - Restruct JS code dan merge from master
 3. Kendala yang dihadapi :
-   - 
+   - Laptop Christopher rusak
+
 -------------------------
 27-05-2016 ()
 1. Kemarin kami mengerjakan :
