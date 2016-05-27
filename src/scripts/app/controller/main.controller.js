@@ -31,12 +31,12 @@
     urlSteamProfile += "&steamids=";
 
     setTimeout(function() {
-        $http.get(urlSteamProfile + steamids).then(function (response) {
-            $scope.userPCAP = response.data.response.players;
-            console.log($scope.userPCAP);
-        }, function() {
-            alert('These accounts has been blocked maybe ...');
-        });
+      $http.get(urlSteamProfile + steamids).then(function (response) {
+        $scope.userPCAP = response.data.response.players;
+        console.log($scope.userPCAP);
+      }, function() {
+          alert('These accounts has been blocked maybe ...');
+      });
     }, 1500);
   
 	}
@@ -86,13 +86,13 @@
         hasil = tmp + hasil;
       }
       for(var i = 0;i<hasil.length;i++) {
-          if(leadZero && hasil[i] == '0') {
-            continue;
-          }
-          else {
-            hasilTanpaZero += hasil[i];
-            leadZero = 0;
-          }
+        if(leadZero && hasil[i] == '0') {
+          continue;
+        }
+        else {
+          hasilTanpaZero += hasil[i];
+          leadZero = 0;
+        }
       }
       return hasilTanpaZero;
     }
