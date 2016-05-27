@@ -119,10 +119,28 @@ Pertanyaan :
    - Laptop Christopher rusak
 
 -------------------------
-27-05-2016 ()
+27-05-2016 (Christopher Ganda)
 1. Kemarin kami mengerjakan :
-   -
-2. Hari ini kami mengerjakan :
-   -
-3. Kendala yang dihadapi :
-   -
+   - Tambah bbrp gambar minimap dota 2
+   - Setting git ignore dan penambahan lagu, lagu selesai
+   - Edit git ignore
+   - Perbaikan lagu
+   - Testing error
+   - Setting git ignore dan penambahan lagu
+   - Fix lagu dan repeat
+   - Perbaikan pada match-static.jade
+   - Tambah ambil nickname dan hero untuk api match detail
+   - Tambah fitur convertTo32Bit
+   - Tambah gambar background 1366*768
+   - Hapus kolom yang tidak diperlukan
+   - Restruct JS code dan merge from master
+2.Hari ini kami mengerjakan :
+   - Ganti nama foto
+   - Ganti display hero
+   - Tambah foto armor dan secret
+3.Kendala yang dihadapi :
+   - Laptop Christopher rusak
+   - Ferry,Christopher dan Denny sibuk dalam persiapan ideafuse
+   - Kehabisan ide dalam pengembangan projek
+
+-------------------------
