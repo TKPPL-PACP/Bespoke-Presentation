@@ -137,7 +137,7 @@ Pertanyaan :
 2.Hari ini kami mengerjakan :
    - Ganti nama foto
    - Ganti display hero
-   - Tambah foto armor dan secret
+   - Tambah foto item armor, secret, weapons, support, common, caster, artifacts
 3.Kendala yang dihadapi :
    - Laptop Christopher rusak
    - Ferry,Christopher dan Denny sibuk dalam persiapan ideafuse
