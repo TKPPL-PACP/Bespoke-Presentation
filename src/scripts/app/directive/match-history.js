@@ -32,10 +32,12 @@
   function MatchHistoryController($scope, $http, ConvertBit) {
 
     var vm = this;
+    
 
     $scope.accountId = '173271017';
     
     function findHistory() {
+      vm.hideSpinner = true;
       var steamId = ConvertBit.convertTo64Bit($scope.accountId);
       
       var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
@@ -44,23 +46,26 @@
 
       var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
       urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
-      urlMatchHistory += "&matches_requested=10";
+      urlMatchHistory += "&matches_requested=5";
 
       if($scope.accountId != '') {
         urlMatchHistory += '&account_id=' + $scope.accountId;
+
+        $http.get(urlSteamProfile + steamId).then(function (response) {
+          vm.user = response.data.response.players[0];
+
+          $http.get(urlMatchHistory).then(function (response) {
+            vm.datas = response.data.result;
+            vm.hideSpinner = false;
+          }, function() {
+              alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
+              vm.hideSpinner = false;
+          });
+        }, function() {
+            alert('That account has been blocked maybe ...');
+            vm.hideSpinner = false;
+        });
       }
-
-      $http.get(urlMatchHistory).then(function (response) {
-        vm.datas = response.data.result;
-      }, function() {
-          alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
-      });
-      $http.get(urlSteamProfile + steamId).then(function (response) {
-        vm.user = response.data.response.players[0];
-      }, function() {
-          alert('That account has been blocked maybe ...');
-      });
-
     }
 
     vm.findHistory = findHistory;

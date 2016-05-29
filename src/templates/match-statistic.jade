@@ -1,12 +1,12 @@
 section
   div(match-detail layout="column" class="md-inline-form")
-    md-content(md-theme="docs-dark" layout-gt-sm="row" layout-padding).hide-overflow
+    md-content(layout-gt-sm="row" layout-padding).hide-overflow
       div
         md-input-container
           label Match ID
           input.form-control(ng-model="matchID" style="color:#000" on-enter="find()" onfocus)
         md-input-container
-          md-button.md-raised.md-primary(ng-click="find()") Find Match Result
+          md-button.md-raised.md-primary(ng-click="find()") Find Match Result 
     md-content(layout-padding ng-show="datas")
       table.stripe#matchResult.table-padding
         tr
@@ -25,14 +25,16 @@ section
           td {{ data.xp_per_min }}
 
 section
-  div(match-history)
-    md-content(layout-gt-sm="row" layout-padding).hidden-overflow
+  div(match-history).md-inline-form
+    md-content(layout-gt-sm="row" layout-padding).hide-overflow
       div
         md-input-container
           label Account Id
           input(ng-model="accountId" style="color:#000" on-enter="vm.findHistory()").hide-overflow
         md-input-container
           md-button.md-raised.md-primary(ng-click="vm.findHistory()") Find Match History
+          div(ng-show="vm.hideSpinner")
+            double-bounce-spinner
         md-input-container
           label Nickname
           input(ng-model="vm.user.personaname" disabled)
@@ -41,7 +43,7 @@ section
           input(ng-model="vm.user.realname" disabled)
     
     md-content(layout-padding ng-show="vm.datas")
-      table
+      table.table-padding.stripe
         tr(style="padding: 3px 8px")
           th(style="padding: 8px") Match Id
           th(style="padding: 8px") Hero 
