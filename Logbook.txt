@@ -144,3 +144,24 @@ Pertanyaan :
    - Kehabisan ide dalam pengembangan projek
 
 -------------------------
+28-05-2016 (Christopher Ganda)
+1. Kemarin kami mengerjakan :
+   - Ganti nama foto
+   - Ganti display hero
+2. Hari ini kami mengerjakan :
+   - Rename gambar item armor, artifacts, caster, common agar sesuai dengan API
+3. Kendala yang dihadapi :
+   - Laptop Christopher rusak
+   - Ferry,Christopher dan Denny sibuk dalam persiapan ideafuse
+   - Kehabisan ide dalam pengembangan projek
+
+--------------------------
+29-05-2016 (Denny Ho)
+1. Kemarin kami mengerjakan :
+   - Rename gambar item armor, artifacts, caster, common agar sesuai dengan API
+2. Hari ini kami mengerjakan :
+   - Semua nama item telah disesuaikan dengan nama item di API
+3. Kendala yang dihadapi :
+   - Laptop Christopher rusak
+   - Kehabisan ide dalam pengembangan projek
+
