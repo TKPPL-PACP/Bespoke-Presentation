@@ -57,6 +57,7 @@ section
     tr(ng-repeat='hero in heroes')
       td(ng-if='hero.id < 10') {{ hero.localized_name }}
       td(ng-if='hero.id < 10') <img src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}' style='height:20px;width:35,55px' />
+
 section
   div(style="width: 100%")
     md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
@@ -64,3 +65,11 @@ section
         img(src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}')
         md-grid-tile-footer
           h3 {{ hero.localized_name }}
+
+section
+  div(style="width: 100%")
+    md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
+      md-grid-tile(md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="item in items" ng-if="item.recipe !== 1 && item.id === 247")
+        img(src='images/item/{{ item.name }}.png' title='{{ item.localized_name }}')
+        md-grid-tile-footer
+          h3 {{ item.localized_name }}
