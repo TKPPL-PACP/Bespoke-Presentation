@@ -23,6 +23,13 @@
       $scope.heroes = response.data.result.heroes;
     });
 
+    //init get item list
+    var urlGetItems = "https://api.steampowered.com/IEconDOTA2_570/GetGameItems/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us&format=JSON";
+    setTimeout(function() {
+      $http.get(urlGetItems).then(function(response) {
+        $scope.items = response.data.result.items;
+      });
+    }, 1500);
     //init pcap steam profiles
     var steamids = ConvertBit.convertTo64Bit('173271017');
 
