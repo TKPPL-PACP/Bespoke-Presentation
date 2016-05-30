@@ -4,13 +4,15 @@
 
   angular
     .module('scripts.app.directive.match-history', [])
-    .directive('matchHistory', matchHistory);
+    .directive('matchHistory', matchHistory)
+    .controller('MatchHistoryController', MatchHistoryController);
 
   matchHistory.$inject = [
     '$http',
+    'ConvertBit',
   ];
 
-  function matchHistory($http) {
+  function matchHistory($http, ConvertBit) {
     var headers = {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': '*',
@@ -18,62 +20,55 @@
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     };
+
     return {
       restrict: 'AE',
-      controller:function($scope) {
-        $scope.accountId = '173271017';
-        
-        function idTo64Bit(id) {
-          var to64 = '76561197960265728';
-          var hasil = '';
-          var tmp = 0;
-          var carry = 0;
-          var now = id.length - 1;
-          for(var i = to64.length-1;i>=0;i--) {
-              tmp = to64.charCodeAt(i) - 48;
-              if(now >= 0) {
-                tmp += id.charCodeAt(now) - 48;
-                now--;
-              }
-              tmp += carry;
-              carry = 0;
-              if(tmp >= 10) carry = 1, tmp -= 10;
-              hasil = tmp + hasil;
-          }
-          return hasil;
-        }
-        $scope.idTo64Bit = idTo64Bit;
-        function findHistory() {
-          var steamId = idTo64Bit($scope.accountId);
-	  var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/"
-	  urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
-	  urlSteamProfile += "&steamids=" + steamId;
+      controller: 'MatchHistoryController',
+      controllerAs: 'vm',
+      bindToController: true
+    };
+  }
+  
+  function MatchHistoryController($scope, $http, ConvertBit) {
 
-          var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
-          urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
-          urlMatchHistory += "&matches_requested=10";
+    var vm = this;
+    
 
-          if($scope.accountId != '') {
-            urlMatchHistory += '&account_id=' + $scope.accountId;
-          }
+    $scope.accountId = '173271017';
+    
+    function findHistory() {
+      vm.hideSpinner = true;
+      var steamId = ConvertBit.convertTo64Bit($scope.accountId);
+      
+      var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
+      urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
+      urlSteamProfile += "&steamids=";
+
+      var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
+      urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
+      urlMatchHistory += "&matches_requested=5";
+
+      if($scope.accountId != '') {
+        urlMatchHistory += '&account_id=' + $scope.accountId;
+
+        $http.get(urlSteamProfile + steamId).then(function (response) {
+          vm.user = response.data.response.players[0];
 
           $http.get(urlMatchHistory).then(function (response) {
-            $scope.datas = response.data.result;
-            console.log($scope.datas);
+            vm.datas = response.data.result;
+            vm.hideSpinner = false;
           }, function() {
-            alert('error');
+              alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
+              vm.hideSpinner = false;
           });
-          console.log(urlSteamProfile);
-          $http.get(urlSteamProfile).then(function (response) {
-            $scope.user = response.data.response.players[0];
-          }, function() {
-            alert('error 2');
-          });
-
-        }
-        $scope.findHistory = findHistory;
+        }, function() {
+            alert('That account has been blocked maybe ...');
+            vm.hideSpinner = false;
+        });
       }
-    };
+    }
+
+    vm.findHistory = findHistory;
   }
 
 })();

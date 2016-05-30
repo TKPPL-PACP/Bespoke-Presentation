@@ -49,7 +49,7 @@ section
   h2 A VICTOR ARISES: VALVE TAKES THE STAGE
   h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
 
-section(ng-controller="heroesController")
+section
   div Currently DotA 2 has {{ heroes.length }} heroes.
   table.table-padding
     tr(style='padding :3x 8px')
@@ -57,3 +57,10 @@ section(ng-controller="heroesController")
     tr(ng-repeat='hero in heroes')
       td(ng-if='hero.id < 10') {{ hero.localized_name }}
       td(ng-if='hero.id < 10') <img src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}' style='height:20px;width:35,55px' />
+section
+  div(style="width: 100%")
+    md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
+      md-grid-tile(md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="hero in heroes" ng-if='$index < 10')
+        img(src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}')
+        md-grid-tile-footer
+          h3 {{ hero.localized_name }}
