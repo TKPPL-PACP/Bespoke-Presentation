@@ -1,0 +1,15 @@
+section
+ h1 Working with Dota API
+ h2 Pasti Anda penasaran apakah kami nge-code semua {{ heroes.length }} heroes?
+ h3 Well, kami tidak mungkin melakukan itu :D
+ h3 Jadi ini dia rahasia kami
+
+section
+ h3 Dota API : Heroes List
+ pre(style="background: #000")
+   code.language-javascripto.
+    var urlGetHeroes = "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us";
+    $http.get(urlGetHeroes).then(function(response) {
+      $scope.heroes = response.data.result.heroes;
+    });
+
