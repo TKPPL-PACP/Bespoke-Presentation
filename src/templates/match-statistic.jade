@@ -68,18 +68,23 @@ section
           td {{ data.gold_per_min }}
           td {{ data.xp_per_min }}
           td(ng-if="data.item_0 === 0") No Item
-          td(ng-repeat="item in items" ng-if="item.id === data.item_0") {{ item.localized_name }}
+          td(ng-repeat="item in items" ng-if="item.id === data.item_0") 
+            img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}") 
           td(ng-if="data.item_1 === 0") No Item
-          td(ng-repeat="item in items" ng-if="item.id === data.item_1") {{ item.localized_name }}
+          td(ng-repeat="item in items" ng-if="item.id === data.item_1")
+            img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
           td(ng-if="data.item_2 === 0") No Item
-          td(ng-repeat="item in items" ng-if="item.id === data.item_2") {{ item.localized_name }}
+          td(ng-repeat="item in items" ng-if="item.id === data.item_2")
+            img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
           td(ng-if="data.item_3 === 0") No Item
-          td(ng-repeat="item in items" ng-if="item.id === data.item_3") {{ item.localized_name }}
+          td(ng-repeat="item in items" ng-if="item.id === data.item_3") 
+            img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
           td(ng-if="data.item_4 === 0") No Item
-          td(ng-repeat="item in items" ng-if="item.id === data.item_4") {{ item.localized_name }}
+          td(ng-repeat="item in items" ng-if="item.id === data.item_4")
+            img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
           td(ng-if="data.item_5 === 0") No Item
-          td(ng-repeat="item in items" ng-if="item.id === data.item_5") {{ item.localized_name }}
-
+          td(ng-repeat="item in items" ng-if="item.id === data.item_5")
+            img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
 section
   div(match-history).md-inline-form
     md-content(layout-gt-sm="row" layout-padding).hide-overflow
