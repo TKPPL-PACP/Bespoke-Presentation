@@ -170,9 +170,24 @@ Pertanyaan :
 1. Kemarin kami mengerjakan :
    - Semua nama item telah disesuikan dengan nama item di API
 2. Hari ini kami mengerjakan :
-   - penambahan tampilan code API kami pada slide presentasi kami
-   - tambah page untuk API match detail
-   - tambah page untuk API list item
+   - Penambahan tampilan code API kami pada slide presentasi kami
+   - Tambah page untuk API match detail
+   - Tambah page untuk API list item
 3. Kendala yang dihadapi :
    - API yang disediakan DotA 2 cukup tidak stabil sehingga susah dalam pengembangan slide.
    - Source dari DotA 2 yang cukup banyak sehingga menghambat pengembangan slide.
+
+-------------------------
+31-05-2016 (Ferry Irawan)
+1. Kemarin kami mengerjakan :
+   - Penambahan tampilan code API kami pada slide presentasi kami
+   - Tambah page untuk API match detail
+   - Tambah page untuk API list item
+2. Hari ini kami mengerjakan :
+   - Me-rename nama gambar item sesuai dengan API
+   - Memindahkan direktori item dan menambah foto item pada team detail
+   - Menambah gambar item
+3. Kendala yang dihadapi :
+   - Para anggota susah untuk fokus dalam mengerjakan proyek, dikarenakan waktu yang terbatas dan kegiatan ataupun pekerjaan masing - masing individu yang banyak
+
+-------------------------
