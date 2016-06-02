@@ -63,6 +63,12 @@ gulp.task('images', ['clean:images'], function() {
     .pipe(connect.reload());
 });
 
+gulp.task('music', ['clean:music'], function() {
+  return gulp.src('src/music/**/*')
+    .pipe(gulp.dest('dist/music'))
+    .pipe(connect.reload());
+});
+
 gulp.task('extraJs', ['clean:extraJs'], function() {
   return gulp.src([
       'bower_components/jquery/dist/jquery.js', 
@@ -119,6 +125,9 @@ gulp.task('clean:images', function(done) {
   del('dist/images', done);
 });
 
+gulp.task('clean:music', function(done) {
+  del('dist/music', done);
+});
 gulp.task('connect', ['build'], function() {
   connect.server({
     root: 'dist',
@@ -134,6 +143,7 @@ gulp.task('watch', function() {
   gulp.watch('src/**/*.jade', ['html']);
   gulp.watch('src/styles/**/*.styl', ['css']);
   gulp.watch('src/images/**/*', ['images']);
+  gulp.watch('src/music/**/*', ['music']);
   gulp.watch([
     'src/scripts/*.js',
     'src/scripts/*/**/*.js',
@@ -145,7 +155,7 @@ gulp.task('deploy', ['build'], function(done) {
   ghpages.publish(path.join(__dirname, 'dist'), { logger: gutil.log }, done);
 });
 
-gulp.task('build', ['js', 'html', 'css', 'images']);
+gulp.task('build', ['js', 'html', 'css', 'images' , 'music']);
 
 gulp.task('serve', ['open', 'watch']);
 
