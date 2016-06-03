@@ -20,3 +20,51 @@ body
 
 .hide-overflow
   overflow hidden
+
+.light-grey-spinner 
+  .three-dots-row-spinner, .double-bounce1, .double-bounce2, .wave-spinner div, .pulse-spinner, .dot1, .dot2
+    background-color $light-grey
+    border-color $light-grey-bd
+
+.light-blue-spinner
+  .three-dots-row-spinner, .double-bounce1, .double-bounce2, .wave-spinner div, .pulse-spinner, .dot1, .dot2
+    background-color $light-blue
+    border-color $light-blue-bd
+
+.danger-spinner
+  .three-dots-row-spinner, .double-bounce1, .double-bounce2, .wave-spinner div, .pulse-spinner, .dot1, .dot2
+    background-color $danger
+    border-color $danger-bd
+
+.warn-spinner
+  .three-dots-row-spinner, .double-bounce1, .double-bounce2, .wave-spinner div, .pulse-spinner, .dot1, .dot2
+    background-color $warn
+    border-color $warn-bd
+
+::-webkit-scrollbar
+  width 8px
+  height 8px
+  background-color rgba(0,0,0,0)
+  -webkit-border-radius: 100px
+
+::-webkit-scrollbar:hover
+  background-color rgba(0,0,0,0.09)
+
+::-webkit-scrollbar-thumb
+  background: rgba(0,0,0,0.5)
+  -webkit-border-radius 100px
+
+::-webkit-scrollbar-thumb:active
+  background: rgba(0,0,0,0.61)
+  -webkit-border-radius 100px
+
+::-webkit-scrollbar-corner
+  -webkit-box-shadow inset 0 0 6px rgba(0,0,0,1)
+
+//::-webkit-scrollbar-track
+//  -webkit-box-shadow inset 0 0 6px rgba(100,100,100,1)
+
+//::-webkit-scrollbar-thumb
+//  -webkit-box-shadow inset 0 0 6px rgba(30,30,30,1)
+
+
