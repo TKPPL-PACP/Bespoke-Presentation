@@ -4,7 +4,18 @@
   angular
     .module('scripts.app.controller.main-controller', [])
     .controller('MainController', MainController)
-    .service('ConvertBit', ConvertBit);
+    .service('ConvertBit', ConvertBit)
+    .config(function($mdThemingProvider) {
+      var neonRedMap = $mdThemingProvider.extendPalette('red', {
+        '500': '#ff0000',
+        'contrastDefaultColor': 'dark'
+      });
+
+      $mdThemingProvider.definePalette('neonRed', neonRedMap);
+
+      $mdThemingProvider.theme('docs-dark')
+        .dark();
+    });
 
   MainController.$inject = [
     '$scope',
@@ -16,11 +27,13 @@
 	function MainController($scope, $filter, $http, ConvertBit) {
     //init function in scope
     $scope.convertTo64Bit = ConvertBit.convertTo64Bit;
+    $scope.heroesLoaded = false;
     
     //init get heroes list
     var urlGetHeroes = "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us";
     $http.get(urlGetHeroes).then(function(response) {
       $scope.heroes = response.data.result.heroes;
+      $scope.heroesLoaded = true;
     });
 
     //init get item list
@@ -40,7 +53,6 @@
     setTimeout(function() {
       $http.get(urlSteamProfile + steamids).then(function (response) {
         $scope.userPCAP = response.data.response.players;
-        console.log($scope.userPCAP);
       }, function() {
           alert('These accounts has been blocked maybe ...');
       });

@@ -27,7 +27,12 @@ bespoke.from('article', [
 var x = document.getElementById('myAudio');
     x.loop = true;
     x.load();
-
+var audio = document.getElementById('myAudio');   
+document.onkeypress = function(e){
+    if((e || window.event).keyCode === 27){
+        audio.paused ? audio.play() : audio.pause();
+    }
+};
 // var audio = new Audio('1.mp3');
 // audio.play();
 // myAudio = new Audio('1.mp3');

@@ -9,20 +9,22 @@ section
     li 
       h3 Choose one of the following :
       ul
-        li a. Foods
-        li b. Drinks
-        li c. A game
+        li(style = 'text-align-left') A. A 1K MMR game
+        li(style = 'text-align-left') B. A NaVi Dendi game
+        li(style = 'text-align-left') C. A game
 section
-  h2 Noob !!!
+  img(src='images/bobo.jpg')
+section
+  h2 Noob !!! Bobo Tangina !!!
   h3 None of your answers are correct ! GGWP !
   h2 So, the correct answer is ...
 
 section
   h2 Dota2 is LOVE, Dota2 is LIFE, and Dota2 is ...
   ol
-    li a F2P game
-    li a MOBA game
-    li developed and published by Valve Corp.
+    li An F2P game,
+    li A MOBA game,
+    li Developed and published by Valve Corp,
     li and the most popular game on Steam.
 
 section
@@ -50,25 +52,19 @@ section
   h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
 
 section
-  div Currently DotA 2 has {{ heroes.length }} heroes.
-  table.table-padding
-    tr(style='padding :3x 8px')
-      th(style='padding: 8px') Hero Name
-    tr(ng-repeat='hero in heroes')
-      td(ng-if='hero.id < 10') {{ hero.localized_name }}
-      td(ng-if='hero.id < 10') <img src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}' style='height:20px;width:35,55px' />
-
-section
-  div(style="width: 100%")
+  h3 Currently DotA 2 has {{ heroes.length }} heroes.
+  double-bounce-spinner(ng-show="!heroesLoaded").light-grey-spinner
+  md-content(md-theme="docs-dark" style="width: inherit" ng-show="heroesLoaded" layout-padding)
     md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
-      md-grid-tile(md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="hero in heroes" ng-if='$index < 10')
+      md-grid-tile(md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="hero in heroes | orderBy: 'localized_name'")
         img(src='images/heroes/{{ hero.name }}.jpg' title='{{ hero.localized_name }}')
         md-grid-tile-footer
           h3 {{ hero.localized_name }}
 
 section
-  div(style="width: 100%")
-    md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
+  h3 There are {{ items.length }} items in Dota 2
+  md-content(md-theme="docs-dark" style="width: inherit" layout-padding)
+    md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="10" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
       md-grid-tile(md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="item in items" ng-if="item.recipe !== 1")
         img(src='images/item/{{ item.name }}.png' title='{{ item.localized_name }}')
         md-grid-tile-footer
