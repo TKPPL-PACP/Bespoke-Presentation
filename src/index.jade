@@ -7,7 +7,7 @@ html
 
     link(rel='stylesheet', type='text/css', href='build/build.css')
 
-  body(ng-app="mainApp" ng-controller="MainController" ng-cloak)
+  body(ng-app="mainApp" ng-controller="MainController").ng-cloak
     include templates/audio.jade
     article
       include templates/history.jade
@@ -18,24 +18,24 @@ html
         h2 Look Spinners
         div(style="background:#777; padding:5px")
           div
-            div(style="margin-left: 40%")
+            div
               rotating-plane-spinner
             label rotating-plane-spinner
           div
-            div(style="margin-left: 40%")
-              double-bounce-spinner
+            div
+              double-bounce-spinner.light-grey-spinner
             label double-bounce-spinner
           div
-            div(style="margin-left: 40%")
-              wave-spinner
+            div
+              wave-spinner.danger-spinner
             label wave-spinner
           div
-            div(style="margin-left: 40%")
-              pulse-spinner
+            div
+              pulse-spinner.warn-spinner
             label pulse-spinner
           div
-            div(style="margin-left: 40%")
-              chasing-dots-spinner 
+            div
+              chasing-dots-spinner.light-blue-spinner 
             label chasing-dots-spinner
     
       include templates/prismcode.jade

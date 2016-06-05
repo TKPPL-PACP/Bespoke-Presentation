@@ -5,44 +5,47 @@ section
  h3 Jadi ini dia rahasia kami
 
 section
- h3 Dota API : Heroes List
- pre(style="background: #000")
-   code.language-javascripto.
-    var urlGetHeroes = "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us";
-    $http.get(urlGetHeroes).then(function(response) {
-      $scope.heroes = response.data.result.heroes;
-    });
-section
- h3 DOTA API : Item List
- pre(style="background: #000")
-   code.language-javascripto.
-    var urlGetItems = "https://api.steampowered.com/IEconDOTA2_570/GetGameItems/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us&format=JSON";
-    setTimeout(function() {
-      $http.get(urlGetItems).then(function(response) {
-        $scope.items = response.data.result.items;
+  h3 Dota API : Heroes List
+  pre
+    code.language-javascript.
+      var urlGetHeroes = "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us";
+      $http.get(urlGetHeroes).then(function(response){
+        $scope.heroes = response.data.result.heroes;
       });
-    }, 1500);
+
 section
- h3 DOTA API : Steam Profile
- pre(style="background: #000")
-   code.language-javascripto.
-    var steamids = ConvertBit.convertTo64Bit('173271017');
-    var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
-    urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
-    urlSteamProfile += "&steamids=";
-    setTimeout(function() {
-      $http.get(urlSteamProfile + steamids).then(function (response) {
-        $scope.userPCAP = response.data.response.players;
-        console.log($scope.userPCAP);
-      }, function() {
-          alert('These accounts has been blocked maybe ...');
-      });
-    }, 1500);
+  h3 DOTA API : Item List
+  pre
+    code.language-javascript.
+      var urlGetItems = "https://api.steampowered.com/IEconDOTA2_570/GetGameItems/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us&format=JSON";
+      setTimeout(function() {
+        $http.get(urlGetItems).then(function(response) {
+          $scope.items = response.data.result.items;
+        });
+      }, 1500);
+
 section
- h3 DOTA API : Match History
- pre(style="background: #000")
-   code.language-javascripto.
-    var steamId = ConvertBit.convertTo64Bit($scope.accountId);
+  h3 DOTA API : Steam Profile
+  pre
+    code.language-javascript.
+      var steamids = ConvertBit.convertTo64Bit('173271017');
+      var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
+      urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
+      urlSteamProfile += "&steamids=";
+      setTimeout(function() {
+        $http.get(urlSteamProfile + steamids).then(function (response) {
+          $scope.userPCAP = response.data.response.players;
+          console.log($scope.userPCAP);
+        }, function() {
+            alert('These accounts has been blocked maybe ...');
+        });
+      }, 1500);
+
+section
+  h3 DOTA API : Match History
+  pre
+    code.language-javascript.
+      var steamId = ConvertBit.convertTo64Bit($scope.accountId);
       var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
       urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
       urlSteamProfile += "&steamids=";
@@ -65,18 +68,19 @@ section
             vm.hideSpinner = false;
         });
       }
+
 section
- h3 DOTA API : Match Detail
- pre(style="background: #000")
-   code.language-javascripto.
-    var url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=C3CB04CAA921917E39D9F8329E4A8130&match_id="+$scope.matchID;
+  h3 DOTA API : Match Detail
+  pre
+    code.language-javascript.
+      var url = "https://api.steampowered.com/IDOTA2Match_570/GetMatchDetails/V001/?key=C3CB04CAA921917E39D9F8329E4A8130&match_id="+$scope.matchID;
       var urlSteamProfile = "http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/";
       var steamids = "";
       urlSteamProfile +=  "?key=C3CB04CAA921917E39D9F8329E4A8130";
       urlSteamProfile += "&steamids=";
       setTimeout(function() {
           $http.get(url).then(function (response) {
-            for(var i=0;i<response.data.result.players.length;i++) {
+            for(var i=0;i&lt;response.data.result.players.length;i++) {
               var accId = response.data.result.players[i].account_id;
               if(i) steamids += ",";
               steamids += ConvertBit.convertTo64Bit(accId);
