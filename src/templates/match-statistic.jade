@@ -16,18 +16,18 @@ section
           label Name
           input(ng-model="vm.user.realname" disabled)
   hr  
-  div(style="width: inherit" layout="column").md-inline-form
-    md-content(layout-padding ng-if="vm.datas")
-      table.table-padding.stripe(style="margin: 0 auto; width: 100%")
-        tr(style="padding: 3px 8px")
-          th(style="padding: 8px") Match Id
-          th(style="padding: 8px") Hero 
-        tr(ng-repeat="match in vm.datas.matches")
-          td 
-            a(href="#find-match-result" ng-click="find(match.match_id)") {{ match.match_id }}
-          td
-            div(style="padding: 0 8px" ng-repeat="player in match.players | filter: vm.steamId32bit" ng-if="player.hero_id <= 31") <img src="images/heroes/{{heroes[player.hero_id - 1].name}}.jpg" title='{{ heroes[player.hero_id - 1].localized_name }}'/>
-            div(style="padding: 0 8px" ng-repeat="player in match.players | filter: vm.steamId32bit" ng-if="player.hero_id > 31") <img src="images/heroes/{{heroes[player.hero_id - 2].name}}.jpg" title='{{ heroes[player.hero_id - 2].localized_name }}'/>
+  div(style="width: inherit;" ng-if="vm.datas").match-history
+    h4 Match History
+    span(ng-class="{'disabled': vm.forPrev.length === 0}" ng-click="vm.findPrev()").fa.fa-chevron-circle-left.left
+    span(ng-click="vm.findNext()").fa.fa-chevron-circle-right.right
+    div(style="padding: 0 18px").row
+      div(ng-repeat="match in vm.datas.matches").match-history-list
+        md-button.md-primary(ng-show="{{ $index < 5 }}")
+          a(href="#find-match-result" ng-click="find(match.match_id)") 
+            span(style="color: #3288df; font-weight: bold") {{ match.match_id }}
+            div(ng-repeat="player in match.players | filter: vm.steamId32bit")
+              img(ng-repeat="hero in heroes" ng-if="hero.id === player.hero_id" src="images/heroes/{{ hero.name }}.jpg" title="{{ hero.localized_name }}")
+      double-bounce-spinner.light-grey-spinner(ng-show="prenext")
 
 section(data-bespoke-hash="find-match-result")
   div(match-detail).md-inline-form
@@ -40,14 +40,15 @@ section(data-bespoke-hash="find-match-result")
           md-button.md-raised.md-primary(ng-click="find(matchID)") Find Match Result 
         md-input-container
           chasing-dots-spinner(ng-show="!hideSpinner").light-blue-spinner
-    md-content(layout-padding ng-show="details")
-      h3 Match Date : {{ details.start_time * 1000 | date: 'EEEE,dd-MMM-yyyy, HH:mm:ss'}}
+    md-content(layout-padding ng-show="details").ta-left
+      h3.dark-col <b>Match Date</b> = {{ details.start_time * 1000 | date: 'EEEE, dd-MMM-yyyy, HH:mm:ss'}}
+      h3.dark-col <b>Duration</b> = {{ minute }}:{{ second }}
 
 section
   div(ng-if="!details")
     h1 Search for a Match Detail
   div(match-detail ng-if="details" style="width: inherit")
-    h3 Radiant <span ng-show="details.radiant_win === true">Win</span><span ng-show="details.radiant_win === false">Lose</span>
+    h3(ng-class="{'win': details.radiant_win, 'lose': !details.radiant_win}") Radiant <span ng-show="details.radiant_win">Win</span><span ng-show="!details.radiant_win">Lose</span>
     div.show-player.row(ng-show="playerInfo")
       div.player-avatar
         img(src="{{ playerInfo.avatar }}")
@@ -64,8 +65,9 @@ section
               tr
                 td <b>Items Build</b>
                 td
-                  div(ng-repeat="item in playerInfo.items" class="item-build")
-                    img(src="images/item/{{ item }}.png" title="{{ item.localized_name }}")
+                  div(ng-repeat="item in playerInfo.items track by $index" class="item-build")
+                    img(src="images/item/{{ item }}.png" title="{{ item.localized_name }}" ng-if="item != 'non'")
+                    div.no-item(ng-if="item === 'non'") No Item
               tr
                 td <b>Gold Per Min</b>
                 td {{ playerInfo.gpm }}
@@ -75,7 +77,7 @@ section
       div.hr-line-dashed 
     div.row
       div.players-card(ng-repeat="data in details.players" ng-if="data.player_slot < 128" ng-class="{'sm-players-card': playerInfo}")
-        div(ng-repeat="hero in heroes" ng-if="data.hero_id === hero.id" style="position: relative")
+        div(ng-repeat="hero in heroes" ng-if="data.hero_id === hero.id").hide-overflow.hero-card
           img(src="images/heroes/{{ hero.name }}.jpg" title="{{ hero.localized_name }}")
           div(ng-if="data.account_id == 4294967295") Anonymous
             div(ng-click="insertInfo(data)").showing-player
@@ -86,7 +88,7 @@ section
   div(ng-if="!details")
     h1 Search for a Match Detail
   div(match-detail ng-if="details" style="width: inherit")
-    h3 Dire <span ng-show="details.radiant_win === false">Win</span><span ng-show="details.radiant_win === true">Lose</span>
+    h3(ng-class="{'win': !details.radiant_win, 'lose': details.radiant_win}")  Dire <span ng-show="!details.radiant_win">Win</span><span ng-show="details.radiant_win">Lose</span>
     div.show-player.row(ng-show="playerInfo")
       div.player-avatar
         img(src="{{ playerInfo.avatar }}")
@@ -103,8 +105,9 @@ section
               tr
                 td <b>Items Build</b>
                 td
-                  div(ng-repeat="item in playerInfo.items" class="item-build")
-                    img(src="images/item/{{ item }}.png" title="{{ item.localized_name }}")
+                  div(ng-repeat="item in playerInfo.items track by $index" class="item-build")
+                    img(src="images/item/{{ item }}.png" title="{{ item.localized_name }}" ng-if="item != 'non'")
+                    div.no-item(ng-show="item === 'non'") No Item
               tr
                 td <b>Gold Per Min</b>
                 td {{ playerInfo.gpm }}
@@ -114,7 +117,7 @@ section
       div.hr-line-dashed 
     div.row
       div.players-card(ng-repeat="data in details.players" ng-if="data.player_slot >= 128" ng-class="{'sm-players-card': playerInfo}")
-        div(ng-repeat="hero in heroes" ng-if="data.hero_id === hero.id" style="position: relative")
+        div(ng-repeat="hero in heroes" ng-if="data.hero_id === hero.id").hide-overflow.hero-card
           img(src="images/heroes/{{ hero.name }}.jpg" title="{{ hero.localized_name }}")
           div(ng-if="data.account_id == 4294967295") Anonymous
             div(ng-click="insertInfo(data)").showing-player

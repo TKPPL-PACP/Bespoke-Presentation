@@ -35,6 +35,7 @@
 
     function findHistory() {
       vm.hideSpinner = true;
+      vm.forPrev = [];
 
       if($scope.accountUser != '') {
 
@@ -51,7 +52,7 @@
 
             var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
             urlMatchHistory += "?key=C3CB04CAA921917E39D9F8329E4A8130";
-            urlMatchHistory += "&matches_requested=5";
+            urlMatchHistory += "&matches_requested=6";
             urlMatchHistory += '&account_id=' + vm.steamId;
 
             vm.steamId32bit = ConvertBit.convertTo32Bit(vm.steamId); 
@@ -62,6 +63,7 @@
               $http.get(urlMatchHistory).then(function (response) {
                 console.log(response.data);
                 vm.datas = response.data.result;
+                $scope.endMatchId = vm.datas.matches[5].match_id;
                 vm.hideSpinner = false;
               }, function() {
                   alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
@@ -83,7 +85,51 @@
       }
     }
 
+    function findNext() {
+      vm.prenext = true;
+      vm.forPrev.push(vm.datas.matches[0].match_id);
+      var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
+      urlMatchHistory += "?start_at_match_id=" + $scope.endMatchId;
+      urlMatchHistory += "&key=C3CB04CAA921917E39D9F8329E4A8130";
+      urlMatchHistory += "&matches_requested=6";
+      urlMatchHistory += '&account_id=' + vm.steamId;
+
+      $http.get(urlMatchHistory).then(function (response) {
+        console.log(response.data);
+        vm.datas = response.data.result;
+        $scope.endMatchId = vm.datas.matches[5].match_id;
+        vm.prenext = false;
+      }, function() {
+          alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
+          vm.prenext = false;
+      });
+    }
+
+    function findPrev() {
+      vm.prenext = true;
+      var urlMatchHistory = "https://api.steampowered.com/IDOTA2Match_570/GetMatchHistory/V001/";
+      urlMatchHistory += "?start_at_match_id=" + vm.forPrev[vm.forPrev.length - 1];
+      urlMatchHistory += "&key=C3CB04CAA921917E39D9F8329E4A8130";
+      urlMatchHistory += "&matches_requested=6";
+      urlMatchHistory += '&account_id=' + vm.steamId;
+
+      $http.get(urlMatchHistory).then(function (response) {
+        console.log(response.data);
+        vm.datas = response.data.result;
+        $scope.endMatchId = vm.datas.matches[5].match_id;
+        vm.prenext = false;
+        vm.forPrev.pop();
+      }, function() {
+          alert('Well, history is history. Don\'t mind it anymore.\nYou must go forward');
+          vm.prenext = false;
+          vm.forPrev.pop();
+      });
+    }
+
     vm.findHistory = findHistory;
+    vm.findNext = findNext;
+    vm.findPrev = findPrev;
+    vm.prenext = false;
   }
 
 })();

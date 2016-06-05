@@ -44,6 +44,8 @@
                 if(i) steamids += ",";
                 steamids += ConvertBit.convertTo64Bit(accId);
                 $scope.details = response.data.result;
+                $scope.minute = Math.floor($scope.details.duration / 60);
+                $scope.second = $scope.details.duration % 60;
               }
               setTimeout(function() {
                 $http.get(urlSteamProfile + steamids).then(function (response2) {
@@ -71,11 +73,15 @@
           tmp = tmp.concat((detail.item_4)? detail.item_4 : -1);
           tmp = tmp.concat((detail.item_5)? detail.item_5 : -1);
           for(var i=0; i<6;i++){
-            for(var j=0; j<$scope.items.length; j++){
-              if(tmp[i] === $scope.items[j].id) { 
-                item.push($scope.items[j].name);
+            if(tmp[i] != -1) {
+              for(var j=0; j<$scope.items.length; j++){
+                if(tmp[i] === $scope.items[j].id) { 
+                  item.push($scope.items[j].name);
+                }
               }
             }
+            else
+              item.push('non');
           }
           console.log(item);
           if(player) {
