@@ -65,7 +65,7 @@ section
 section
   div(match-detail layout="column")
     md-content(layout-padding ng-show="datas")
-       h3 Dire <span ng-if="datas.radiant_win === false">Win</span><span ng-if="datas.radiant_win === true">Lose</span>
+       h3 <span ng-if="datas.radiant_win === false">div(style='background-image: url(images/dire-win.jpg);')Dire Win</span><span ng-if="datas.radiant_win === true">div(style='background-image: url(images/radiant-win.jpg);')Radiant Win</span>
        table.stripe#matchResult.table-padding
         tr(style="font-size: 15px")
           th No.
