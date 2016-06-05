@@ -27,7 +27,8 @@
 	function MainController($scope, $filter, $http, ConvertBit) {
     //init function in scope
     $scope.convertTo64Bit = ConvertBit.convertTo64Bit;
-    $scope.heroesLoaded = false;
+    $scope.heroesLoaded = $scope.itemsLoaded = false;
+    $scope.itemLength = 0;
     
     //init get heroes list
     var urlGetHeroes = "https://api.steampowered.com/IEconDOTA2_570/GetHeroes/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&language=en_us";
@@ -41,6 +42,13 @@
     setTimeout(function() {
       $http.get(urlGetItems).then(function(response) {
         $scope.items = response.data.result.items;
+
+        for(var i=0; i<$scope.items.length; i++){
+          if($scope.items[i].recipe !== 1){
+            $scope.itemLength+=1;
+          }
+        }
+        $scope.itemsLoaded = true;
       });
     }, 1500);
     //init pcap steam profiles

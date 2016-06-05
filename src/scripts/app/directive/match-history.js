@@ -40,7 +40,7 @@
 
         var urlVanity = "http://api.steampowered.com/ISteamUser/ResolveVanityURL/v0001/?key=C3CB04CAA921917E39D9F8329E4A8130&vanityurl="+$scope.accountUser;
         $http.get(urlVanity).then(function (response) {
-          if(response.data.response.success) {
+          if(response.data.response.steamid) {
 
             //var steamId = ConvertBit.convertTo64Bit(response.data.response.steamid);
             vm.steamId = response.data.response.steamid;
@@ -72,8 +72,12 @@
                 vm.hideSpinner = false;
             });
           }
+          else { 
+            alert('We can\'t find that user. His or Her MMR maybe under 1k.\nTry another one !!'); 
+            vm.hideSpinner = false;
+          }
         }, function() {
-            alert('We can\'t find that user. He\'s not famouse.\nTry another one !!'); 
+            alert('We can\'t find that user. His or Her MMR maybe under 1k.\nTry another one !!'); 
             vm.hideSpinner = false;
         });
       }

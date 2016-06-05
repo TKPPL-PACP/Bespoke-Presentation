@@ -50,7 +50,7 @@ section
   h3 In September of 2010, something magical happened. Valve Software announced their new in-house created game: Dota 2. Not only had it kept the DotA name (despite legal arguments), but it promised to keep the exact DotA experience in tact in a modern engine.
 
 section
-  h3 Currently DotA 2 has {{ heroes.length }} heroes.
+  h3 Currently DotA 2 has <span ng-if="!heroes.length">0</span> {{ heroes.length }} heroes.
   double-bounce-spinner(ng-show="!heroesLoaded").light-grey-spinner
   md-content(md-theme="docs-dark" style="width: inherit" ng-show="heroesLoaded" layout-padding)
     md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="8" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
@@ -60,10 +60,11 @@ section
           h3 {{ hero.localized_name }}
 
 section
-  h3 There are {{ items.length }} items in Dota 2
-  md-content(md-theme="docs-dark" style="width: inherit" layout-padding)
+  h3 There are {{ itemLength }} items in Dota 2
+  double-bounce-spinner(ng-show="!itemsLoaded").light-grey-spinner
+  md-content(md-theme="docs-dark" style="width: inherit" layout-padding ng-show="itemsLoaded")
     md-grid-list(md-cols-xs="1" md-cols-sm="2" md-cols-md="2" md-cols-gt-md="10" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px")
       md-grid-tile(md-rowspan="2" md-colspan="2" md-colspan-sm="1" md-colspan-xs="1" ng-repeat="item in items" ng-if="item.recipe !== 1")
-        img(src='images/item/{{ item.name }}.png' title='{{ item.localized_name }}')
+        img(src='images/item/{{ item.name }}.png')
         md-grid-tile-footer
           h3 {{ item.localized_name }}
