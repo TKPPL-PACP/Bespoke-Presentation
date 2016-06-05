@@ -1,119 +1,4 @@
 section
-  div(match-detail layout="column" class="md-inline-form")
-    md-content(layout-gt-sm="row" layout-padding).hide-overflow
-      div
-        md-input-container
-          label Match ID
-          input.form-control(ng-model="matchID" style="color:#000" on-enter="find()" onfocus)
-        md-input-container
-          md-button.md-raised.md-primary(ng-click="find()") Find Match Result 
-    md-content(layout-padding ng-show="datas")
-      h3 Match Date : {{ datas.start_time * 1000 | date: 'EEEE,dd-MMM-yyyy, HH:mm:ss'}}
-
-section
-  div(match-detail layout="column")
-    md-content(layout-padding ng-show="datas")
-       h3 Radiant <span ng-if="datas.radiant_win === true">Win</span><span ng-if="datas.radiant_win === false">Lose</span>
-       table.stripe#matchResult.table-padding
-        tr
-          th No.
-          th Name
-          th Hero Id
-          th Gold Per Min
-          th Xp Per Min
-          th Item 1
-          th Item 2
-          th Item 3
-          th Item 4
-          th Item 5
-          th Item 6
-        tr(ng-repeat="data in datas.players" ng-if="data.player_slot < 128")
-          td {{ $index + 1 }}
-          td
-            div(ng-if="data.account_id == 4294967295") Anonymous
-            div(ng-if="data.account_id != 4294967295" ng-repeat="profile in profiles | filter: convertTo64Bit(data.account_id)") {{ profile.personaname }}
-          td
-            div(ng-if="data.hero_id <= 31") {{ heroes[data.hero_id - 1].localized_name }}
-            div(ng-if="data.hero_id > 31") {{ heroes[data.hero_id - 2].localized_name }}
-          td {{ data.gold_per_min }}
-          td {{ data.xp_per_min }}
-          td
-            div(ng-if="data.item_0 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_0") 
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}") 
-          td
-            div(ng-if="data.item_1 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_1")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_2 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_2")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_3 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_3") 
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_4 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_4")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_5 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_5")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          
-section
-  div(match-detail layout="column")
-    md-content(layout-padding ng-show="datas")
-       h3 Dire <span ng-if="datas.radiant_win === false">Win</span><span ng-if="datas.radiant_win === true">Lose</span>
-       table.stripe#matchResult.table-padding
-        tr(style="font-size: 15px")
-          th No.
-          th Name
-          th Hero Id
-          th Gold Per Min
-          th Xp Per Min
-          th Item 1
-          th Item 2
-          th Item 3
-          th Item 4
-          th Item 5
-          th Item 6
-        tr(ng-repeat="data in datas.players" ng-if="data.player_slot >= 128")
-          td {{ $index - 4 }}
-          td
-            div(ng-if="data.account_id == 4294967295") Anonymous
-            div(ng-if="data.account_id != 4294967295" ng-repeat="profile in profiles | filter: convertTo64Bit(data.account_id)") {{ profile.personaname }}
-          td
-            div(ng-if="data.hero_id <= 31") {{ heroes[data.hero_id - 1].localized_name }}
-            div(ng-if="data.hero_id > 31") {{ heroes[data.hero_id - 2].localized_name }}
-          td {{ data.gold_per_min }}
-          td {{ data.xp_per_min }}
-          td
-            div(ng-if="data.item_0 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_0") 
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}") 
-          td
-            div(ng-if="data.item_1 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_1")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_2 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_2")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_3 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_3") 
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_4 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_4")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-          td
-            div(ng-if="data.item_5 === 0") No Item
-            div(ng-repeat="item in items" ng-if="item.id === data.item_5")
-              img(src="images/item/{{ item.name }}.png" title="{{ item.localized_name }}")
-section
   div(match-history style="width: inherit").md-inline-form
     md-content(layout-gt-sm="row" layout-padding)
       div
@@ -152,7 +37,7 @@ section(data-bespoke-hash="find-match-result")
           label Match ID
           input.form-control(ng-model="matchID" style="color:#000" on-enter="find(matchID)" onfocus)
         md-input-container
-          md-button.md-raised.md-primary(ng-click="find(matchID)") Find Match Result 
+          md-button.md-raised.md-primary(ng-click="find(matchID)") Find Match Result
         md-input-container
           chasing-dots-spinner(ng-show="!hideSpinner").light-blue-spinner
     md-content(layout-padding ng-show="details").ta-left
@@ -163,6 +48,8 @@ section
   div(ng-if="!details")
     h1 Search for a Match Detail
   div(match-detail ng-if="details" style="width: inherit")
+    div(ng-if="details.radiant_win").radiant-win-bg
+    div(ng-if="!details.radiant_win").dire-win-bg
     h3(ng-class="{'win': details.radiant_win, 'lose': !details.radiant_win}") Radiant <span ng-show="details.radiant_win">Win</span><span ng-show="!details.radiant_win">Lose</span>
     div.show-player.row(ng-show="playerInfo")
       div.player-avatar
@@ -203,6 +90,8 @@ section
   div(ng-if="!details")
     h1 Search for a Match Detail
   div(match-detail ng-if="details" style="width: inherit")
+    div(ng-if="details.radiant_win").radiant-win-bg
+    div(ng-if="!details.radiant_win").dire-win-bg
     h3(ng-class="{'win': !details.radiant_win, 'lose': details.radiant_win}")  Dire <span ng-show="!details.radiant_win">Win</span><span ng-show="details.radiant_win">Lose</span>
     div.show-player.row(ng-show="playerInfo")
       div.player-avatar
